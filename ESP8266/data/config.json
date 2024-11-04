@@ -1,0 +1,8 @@
+{
+"mode":0,
+"name":"device",
+"ap_ssid":"device_ap",
+"ap_passwd":12345678,
+"wifi_ssid":"",
+"wifi_passwd":""
+}
