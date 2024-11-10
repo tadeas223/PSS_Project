@@ -16,46 +16,45 @@ void(* resetFunc) (void) = 0;
 
 ESP8266WebServer server(80);
 
-int mode = 0;
-// 0 - controll trough AP
-// 1 - controll trough a different wifi network
-char* name = "device";
-char* ap_ssid = "device-AP";
-char* ap_passwd = "12345678";
-char* wifi_ssid = NULL;
-char* wifi_passwd = NULL;
+int pin = BUILTIN_LED;
+
+struct Response {
+  const char* message;
+  const char* status;
+  int statusCode;
+};
+struct Configuration {
+  int mode;
+  // 0 - controll trough AP
+  // 1 - controll trough a different wifi network
+  const char* name;
+  const char* ap_ssid;
+  const char* ap_passwd;
+  const char* wifi_ssid;
+  const char* wifi_passwd;
+};
+
+Configuration configuration;
 
 void setup() {
   Serial.begin(115200);
   Serial.println("");
 
-  pinMode(BUILTIN_LED, OUTPUT);
-
-  if (!LittleFS.begin()) {
-    Serial.println("SPIFFS failed");
-  }
-
-  Serial.print("name=");
-  Serial.println(name);
-
-  modeSetup();
-
+  loadDefaultConfig();
   serverRouting();
-  server.begin();
 }
 
 void loop() {
   server.handleClient();
 }
 
+//
+// Wifi stuff
+//
 void modeSetup() {
-  Serial.println("Mode setup");
-  Serial.print("mode=");
-  Serial.println(mode);
-
-  if (mode == 0) {
+  if (configuration.mode == 0) {
     APsetup();
-  } else if (mode == 1) {
+  } else if (configuration.mode == 1) {
     if (!WifiSetup()) {
       APsetup();
     }
@@ -64,63 +63,90 @@ void modeSetup() {
 
 void APsetup() {
   WiFi.mode(WIFI_AP);
-  WiFi.softAP(ap_ssid, ap_passwd);
-
-  Serial.println("AP started");
-
-  Serial.print("ap_ssid=");
-  Serial.println(ap_ssid);
-
-  Serial.print("ap_passwd=");
-  Serial.println(ap_passwd);
+  WiFi.softAP(configuration.ap_ssid, configuration.ap_passwd);
 }
 
 bool WifiSetup() {
-  if (wifi_ssid == NULL || wifi_passwd == NULL) {
-    Serial.println("Wifi setup failed, missing credentials");
+  if (configuration.wifi_ssid == NULL || configuration.wifi_passwd == NULL) {
     return false;
   }
 
   WiFi.mode(WIFI_STA);
-  WiFi.begin(wifi_ssid, wifi_passwd);
-
-  Serial.print("wifi_ssid=");
-  Serial.println(wifi_ssid);
-
-  Serial.print("wifi_passwd=");
-  Serial.println(wifi_passwd);
-
-  Serial.print("Connecting");
+  WiFi.begin(configuration.wifi_ssid, configuration.wifi_passwd);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
 
-  Serial.println("");
-  Serial.println("Connected");
-
-  Serial.print("local ip=");
-  Serial.println(WiFi.localIP());
-
-  if (MDNS.begin(name)) {
-    Serial.println("MDNS responder started");
-    Serial.println(strcat("MDNS name = ", name));
+  if (MDNS.begin(configuration.name)) {
+    // TODO: log something to serial
   }
 
   return true;
 }
 
+//
+// Configuration stuff
+//
+void loadDefaultConfig() {
+  configuration.mode = 0;
+  configuration.name = "device";
+  configuration.ap_ssid = "device-AP";
+  configuration.ap_passwd = "12345678";
+  configuration.wifi_ssid = NULL;
+  configuration.wifi_passwd = NULL;
+}
+
+void serializeConfiguration(Configuration* config, JsonDocument* doc) {
+  (*doc)["mode"] = config->mode;
+  (*doc)["name"] = config->name;
+  (*doc)["ap_ssid"] = config->ap_ssid;
+  (*doc)["ap_passwd"] = config->ap_passwd;
+  (*doc)["wifi_ssid"] = config->wifi_ssid;
+  (*doc)["wifi_passwd"] = config->wifi_passwd;
+}
+
+void deserializeConfig(JsonDocument* doc, Configuration* config) {
+  config->mode = (*doc)["mode"];
+  config->name = (*doc)["name"];
+  config->ap_ssid = (*doc)["ap_ssid"];
+  config->ap_passwd = (*doc)["ap_passwd"];
+  config->wifi_ssid = (*doc)["wifi_ssid"];
+  config->wifi_passwd = (*doc)["wifi_passwd"];
+}
+
+//
+// API stuff
+//
+
 void serverRouting() {
   server.onNotFound(handleNotFound);
 
-  server.on("/get/helloworld", HTTP_GET, getHelloWorld);
-  server.on("/get/helloworldjson", HTTP_GET, getHelloWorldJson);
-  server.on("/get/config", HTTP_GET, getConfig);
-  server.on("/post/led", HTTP_POST, postLed);
-  server.on("/post/config", HTTP_POST, postConfig);
+  server.on("/helloworld", HTTP_GET, getHelloWorld);
+  server.on("/control/value", HTTP_POST, postControlValue);
 }
 
+//
+// Additional Methods for HTTP
+//
+
+void generateResponseJson(Response response, JsonDocument* doc) {
+  (*doc)["message"] = response.message;
+  (*doc)["status"] = response.status;
+}
+
+void sendResponse(Response response) {
+  StaticJsonDocument<256> doc;
+  generateResponseJson(response, &doc);
+
+  String jsonString;
+  serializeJson(doc, jsonString);
+  server.send(response.statusCode, "application/json", jsonString);
+}
+
+// Retrieves a JSON body from a server request.
+// The value false is returned when an error occured while parsing the JSON.
 variant<JsonDocument, bool> getJson() {
   String body = server.arg("plain");
   DynamicJsonDocument doc(512);
@@ -141,134 +167,107 @@ variant<JsonDocument, bool> getJson() {
   return doc;
 }
 
-// HTTP server handlers
+//
+//Response builders
+//
+
+// Response that represents missing or invalid values passed in the request body.
+// Or if an invalid JSON was recieved.
+Response BadRequestResponse(const char* message) {
+  Response response;
+  response.status = "Bad Request";
+  response.statusCode = 400;
+  response.message = message;
+  return response;
+}
+
+Response SuccessResponse(const char* message) {
+  Response response;
+  response.status = "OK";
+  response.statusCode = 200;
+  response.message = message;
+  return response;
+}
+
+//
+// HTTP handlers
+//
 
 void handleNotFound() {
-  server.send(404, "text/plain", "404 Not Found :(");
+  Response response;
+  response.message = "Not Found";
+  response.status = "ERROR";
+  response.statusCode = 404;
+
+  sendResponse(response);
 }
 
 void getHelloWorld() {
-  server.send(200, "text/plain", "Hello World!");
+  StaticJsonDocument<128> doc;
+  doc["message"] = "Hello, World!";
+
+  String jsonString;
+  serializeJson(doc, jsonString);
+
+  server.send(200, "application/json", jsonString);
 }
 
-void getHelloWorldJson() {
-  StaticJsonDocument<32> doc;
-  doc["greeting"] = "Hello World!";
-  String json;
-  serializeJson(doc, json);
-
-  server.send(200, "application/json", json);
-}
-
-void postConfig() {
+// Sets a desired pin HIGH or LOW based on the JSON request.
+// The pin that is controlled is set in the "pin" variable
+// JSON arguments:
+//     - bool value    Represents the value of the pin (true = HIGH, false = LOW)
+void postControlValue() {
   variant variant = getJson();
   if (holds_alternative<bool>(variant)) {
+    return;
+  } else {
+    Response response = BadRequestResponse("Failed parsing request body into JSON");
+    sendResponse(response);
     return;
   }
 
   JsonDocument doc = get<JsonDocument>(variant);
+  
+  if(!doc.containsKey("value")) {
+    Response response = BadRequestResponse("Missing argument value.");
+    sendResponse(response);
+    return;
+  }
+
   JsonVariant jsonVariant = doc.as<JsonVariant>();
+  bool value = jsonVariant["value"].as<bool>();
 
-  if (!jsonVariant.containsKey("name") || 
-  !jsonVariant.containsKey("mode") ||
-  !jsonVariant.containsKey("ap_ssid") || 
-  !jsonVariant.containsKey("ap_passwd") || 
-  !jsonVariant.containsKey("wifi_ssid") || 
-  !jsonVariant.containsKey("wifi_passwd")) {
-    DynamicJsonDocument errDoc(512);
-    errDoc["status"] = "ERROR";
-    errDoc["message"] = "Missing variables";
-
-    String buf;
-    serializeJson(errDoc, buf);
-
-    server.send(400, "application/json", buf);
+  if(value) {
+    digitalWrite(pin, HIGH);
+  } else {
+    digitalWrite(pin, LOW);
   }
 
-  String configString;
-  deserializeJson(doc, configString);
-
-  File configFile = LittleFS.open(CONFIG, "w");
-
-  if(!configFile) {
-    Serial.println("Failed to open config file for writing");
-    DynamicJsonDocument errDoc(512);
-    errDoc["status"] = "ERROR";
-    errDoc["message"] = "missing credentials";
-
-    String buf;
-    serializeJson(errDoc, buf);
-
-    server.send(400, "application/json", buf);
-    return;
-  }
-
-  String buf;
-  serializeJson(doc, buf);
-  configFile.print(buf);
-  configFile.close();
-
-  DynamicJsonDocument responseDoc(512);
-  responseDoc["status"] = "OK";
-  responseDoc["message"] = "Config saved. Rebooting device!!!";
-
-  buf = "";
-  serializeJson(responseDoc, buf);
-
-  server.send(400, "application/json", buf);
-
-  resetFunc();
+  Response response = SuccessResponse("Pin value set");
+  sendResponse(response);
 }
 
-void getConfig() {
-  File configFile = LittleFS.open(CONFIG, "r");
 
-  if(!configFile) {
-    Serial.println("Failed to open config file for writing");
-    DynamicJsonDocument errDoc(512);
-    errDoc["status"] = "ERROR";
-    errDoc["message"] = "missing credentials";
 
-    String buf;
-    serializeJson(errDoc, buf);
 
-    server.send(400, "application/json", buf);
-    return;
-  }
 
-  String configStr = "";
-  while(configFile.available()){
-    configStr.concat(configFile.read());  
-  }
-  configFile.close();
 
-  server.send(200, "application/json", configStr);
-}
 
-void postLed() {
-  variant variant = getJson();
-  if (holds_alternative<bool>(variant)) {
-    return;
-  }
 
-  JsonDocument doc = get<JsonDocument>(variant);
-  JsonVariant jsonVariant = doc.as<JsonVariant>();
 
-  if(jsonVariant.containsKey("state")) {
-    const char* state = jsonVariant["state"];
-    if(strcmp(state, "on")) {
-      digitalWrite(BUILTIN_LED, HIGH);
-    } else {
-      digitalWrite(BUILTIN_LED, LOW);
-    }
-  }
 
-  DynamicJsonDocument errDoc(512);
-  errDoc["status"] = "ERROR";
-  errDoc["message"] = "missing variable";
 
-  String buf;
-  serializeJson(errDoc, buf);
 
-  server.send(400, "application/json", buf);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
