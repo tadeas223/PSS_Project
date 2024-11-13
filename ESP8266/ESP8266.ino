@@ -25,8 +25,8 @@ struct Response {
 };
 struct Configuration {
   int mode;
-  // 0 - controll trough AP
-  // 1 - controll trough a different wifi network
+  // 0 - control trough AP
+  // 1 - control trough a different wifi network
   const char* name;
   const char* ap_ssid;
   const char* ap_passwd;
@@ -40,8 +40,27 @@ void setup() {
   Serial.begin(115200);
   Serial.println("");
 
+  pinMode(pin, OUTPUT);
+
   loadDefaultConfig();
+  Serial.println("Default config loaded");
+  
+  String json;
+  DynamicJsonDocument doc(512);
+  deserializeConfig(&configuration, &doc);
+  serializeJson(doc, json);
+  Serial.println("Configuration:\n");
+  Serial.println(json);
+
+  Serial.println("Mode setup");
+  modeSetup();
+
+  Serial.println("Setting server routes");
   serverRouting();
+
+  server.begin(); 
+
+  Serial.println("Server started");
 }
 
 void loop() {
@@ -62,25 +81,33 @@ void modeSetup() {
 }
 
 void APsetup() {
+  Serial.println("Setting up AP");
   WiFi.mode(WIFI_AP);
   WiFi.softAP(configuration.ap_ssid, configuration.ap_passwd);
+  Serial.println("AP started");
+  Serial.print("IP: ");
+  Serial.println(WiFi.softAPIP().toString());
 }
 
 bool WifiSetup() {
+  Serial.println("Setting up WiFi");
   if (configuration.wifi_ssid == NULL || configuration.wifi_passwd == NULL) {
+    Serial.println("Missing credentials for WiFi network");
     return false;
   }
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(configuration.wifi_ssid, configuration.wifi_passwd);
-
+  Serial.println("Connecting");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
 
+  Serial.print("Connected with IP ");
+  Serial.println(WiFi.localIP().toString());
   if (MDNS.begin(configuration.name)) {
-    // TODO: log something to serial
+    Serial.println("MDNS responder working");
   }
 
   return true;
@@ -90,7 +117,7 @@ bool WifiSetup() {
 // Configuration stuff
 //
 void loadDefaultConfig() {
-  configuration.mode = 0;
+  configuration.mode = 1;
   configuration.name = "device";
   configuration.ap_ssid = "device-AP";
   configuration.ap_passwd = "12345678";
@@ -98,7 +125,7 @@ void loadDefaultConfig() {
   configuration.wifi_passwd = NULL;
 }
 
-void serializeConfiguration(Configuration* config, JsonDocument* doc) {
+void deserializeConfig(Configuration* config, JsonDocument* doc) {
   (*doc)["mode"] = config->mode;
   (*doc)["name"] = config->name;
   (*doc)["ap_ssid"] = config->ap_ssid;
@@ -107,7 +134,7 @@ void serializeConfiguration(Configuration* config, JsonDocument* doc) {
   (*doc)["wifi_passwd"] = config->wifi_passwd;
 }
 
-void deserializeConfig(JsonDocument* doc, Configuration* config) {
+void serializeConfig(JsonDocument* doc, Configuration* config) {
   config->mode = (*doc)["mode"];
   config->name = (*doc)["name"];
   config->ap_ssid = (*doc)["ap_ssid"];
@@ -123,8 +150,11 @@ void deserializeConfig(JsonDocument* doc, Configuration* config) {
 void serverRouting() {
   server.onNotFound(handleNotFound);
 
+  server.on("/", HTTP_GET, getRoot);
   server.on("/helloworld", HTTP_GET, getHelloWorld);
   server.on("/control/value", HTTP_POST, postControlValue);
+  server.on("/control/status", HTTP_GET, getControlStatus);
+  server.on("/reset", HTTP_POST, postReset);
 }
 
 //
@@ -151,19 +181,9 @@ variant<JsonDocument, bool> getJson() {
   String body = server.arg("plain");
   DynamicJsonDocument doc(512);
   DeserializationError error = deserializeJson(doc, body);
-
   if (error) {
-    DynamicJsonDocument errDoc(512);
-    errDoc["status"] = "ERROR";
-    errDoc["message"] = "Unnable to format json body";
-
-    String buf;
-    serializeJson(errDoc, buf);
-
-    server.send(400, "application/json", buf);
     return true;
   }
-
   return doc;
 }
 
@@ -202,6 +222,13 @@ void handleNotFound() {
   sendResponse(response);
 }
 
+void getRoot() {
+  response.message = "Hello";
+  response.status = "OK";
+  response.statusCode = 200;
+  sendResponse(response);
+}
+
 void getHelloWorld() {
   StaticJsonDocument<128> doc;
   doc["message"] = "Hello, World!";
@@ -217,10 +244,9 @@ void getHelloWorld() {
 // JSON arguments:
 //     - bool value    Represents the value of the pin (true = HIGH, false = LOW)
 void postControlValue() {
+  Serial.println("POST value");
   variant variant = getJson();
   if (holds_alternative<bool>(variant)) {
-    return;
-  } else {
     Response response = BadRequestResponse("Failed parsing request body into JSON");
     sendResponse(response);
     return;
@@ -247,9 +273,66 @@ void postControlValue() {
   sendResponse(response);
 }
 
+// Returns the status of a pin
+// JSON arguments:
+//     - bool value    Represents the value of the pin (true = HIGH, false = LOW)
+void getControlStatus() {
+  Serial.println("GET status");
+  StaticJsonDocument<128> doc;
+  doc["value"] = (digitalRead(pin) == 1);
 
+  String jsonString;
+  serializeJson(doc, jsonString);
 
+  server.send(200, "application/json", jsonString);
+}
 
+// Resets the ESP
+void postReset() {
+  Response response = SuccessResponse("Resetting now!!!");
+  sendResponse(response);
+  resetFunc();
+}
+
+void getConfiguration() {
+  DynamicJsonDocument doc(512);
+  serializeConfig(&doc, &configuration);
+
+  String jsonString;
+  serializeJson(doc, jsonString);
+
+  server.send(200, "application/json", jsonString);
+}
+
+void postConfiguration() {
+  variant variant = getJson();
+  if (holds_alternative<bool>(variant)) {
+    return;
+  } else {
+    Response response = BadRequestResponse("Failed parsing request body into JSON");
+    sendResponse(response);
+    return;
+  }
+
+  JsonDocument doc = get<JsonDocument>(variant);
+
+  if(!doc.containsKey("mode") &&
+  !doc.containsKey("name") &&
+  !doc.containsKey("ap_ssid") &&
+  !doc.containsKey("ap_passwd") &&
+  !doc.containsKey("wifi_ssid") &&
+  !doc.containsKey("wifi_passwd")) {
+    Response response = BadRequestResponse("Missing argument value.");
+    sendResponse(response);
+    return;
+  }
+
+  deserializeConfig(&configuration, &doc);
+
+  Response response = SuccessResponse("Configuration has be changed. Resetting now!!!");
+  sendResponse(response);
+  resetFunc();
+}
 
 
 

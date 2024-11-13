@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.pssandroidapp-mergeDebugResources-32:/values-v19/values-v19.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\032e857e10faede5164a0ca4777559f6\\transformed\\leanback-1.0.0\\res\\values-v19\\values-v19.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "10",
+                        "endColumns": "12",
+                        "endOffsets": "659"
+                    }
+                }
+            ]
+        }
+    ]
+}
