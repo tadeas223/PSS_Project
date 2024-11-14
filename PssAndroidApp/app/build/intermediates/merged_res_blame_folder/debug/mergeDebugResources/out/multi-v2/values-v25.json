@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pssandroidapp-mergeDebugResources-32:/values-v25/values-v25.xml",
+            "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\81d75a04be0052264c811f9f6a396482\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

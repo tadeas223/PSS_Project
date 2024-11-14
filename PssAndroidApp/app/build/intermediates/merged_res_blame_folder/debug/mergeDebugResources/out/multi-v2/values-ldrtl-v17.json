@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pssandroidapp-mergeDebugResources-32:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\f5b973bcd45f424275e677965f979789\\transformed\\material-1.10.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\6d3ca490ef46b6cc8ac95241e2794ece\\transformed\\material-1.10.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\032e857e10faede5164a0ca4777559f6\\transformed\\leanback-1.0.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\fd03bf894ac2ff074b416df7cbbe005c\\transformed\\leanback-1.0.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

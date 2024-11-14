@@ -40,6 +40,11 @@
         android:testOnly="true"
         android:theme="@style/Theme.PssAndroidApp" >
         <activity
+            android:name="com.example.pssandroidapp.DeviceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_device"
+            android:theme="@style/Theme.PssAndroidApp" />
+        <activity
             android:name="com.example.pssandroidapp.MainActivity"
             android:exported="true" >
             <intent-filter>
@@ -48,6 +53,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:exported="true" />
+        <activity
+            android:name="androidx.activity.ComponentActivity"
+            android:exported="true" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

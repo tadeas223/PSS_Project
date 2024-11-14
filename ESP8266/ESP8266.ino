@@ -14,9 +14,9 @@ using namespace std;
 
 void(* resetFunc) (void) = 0;
 
-ESP8266WebServer server(80);
+ESP8266WebServer server(6660);
 
-int pin = BUILTIN_LED;
+int pin = 14;
 
 struct Response {
   const char* message;

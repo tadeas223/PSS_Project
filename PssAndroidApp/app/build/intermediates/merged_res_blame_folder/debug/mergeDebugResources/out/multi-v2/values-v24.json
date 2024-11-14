@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pssandroidapp-mergeDebugResources-32:/values-v24/values-v24.xml",
+            "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\f5b973bcd45f424275e677965f979789\\transformed\\material-1.10.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\6d3ca490ef46b6cc8ac95241e2794ece\\transformed\\material-1.10.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\0b47c37e31b5e2fd210aa98e5a49169a\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\d5a8eae600c5f0e6a69de06802743397\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -40,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\81d75a04be0052264c811f9f6a396482\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

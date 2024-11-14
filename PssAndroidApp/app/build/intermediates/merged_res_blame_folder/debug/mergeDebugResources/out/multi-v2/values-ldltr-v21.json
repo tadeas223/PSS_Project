@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pssandroidapp-mergeDebugResources-32:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\81d75a04be0052264c811f9f6a396482\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

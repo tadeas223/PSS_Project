@@ -18,12 +18,16 @@ drawable default_background
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable movie
+id backBut
 id button
+id deviceName
 id recyclerView
 id reloadBut
 id scrollView
+id switch1
+layout activity_device
 layout activity_main
-layout device_view
+layout device_item_view
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
@@ -39,6 +43,7 @@ string personal_settings
 string related_movies
 string rent_1
 string rent_2
+string title_activity_device
 string title_activity_main2
 string watch_trailer_1
 string watch_trailer_2

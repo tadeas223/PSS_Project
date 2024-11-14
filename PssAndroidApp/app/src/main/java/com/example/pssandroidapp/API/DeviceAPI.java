@@ -15,10 +15,12 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class DeviceAPI {
+    public static int DEVICE_PORT = 6660;
     private String url;
     private Context context;
     public DeviceAPI(String url, Context context) {
