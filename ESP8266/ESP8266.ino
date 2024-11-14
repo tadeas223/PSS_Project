@@ -117,7 +117,7 @@ bool WifiSetup() {
 // Configuration stuff
 //
 void loadDefaultConfig() {
-  configuration.mode = 1;
+  configuration.mode = 0;
   configuration.name = "device";
   configuration.ap_ssid = "device-AP";
   configuration.ap_passwd = "12345678";
@@ -150,10 +150,11 @@ void serializeConfig(JsonDocument* doc, Configuration* config) {
 void serverRouting() {
   server.onNotFound(handleNotFound);
 
-  server.on("/", HTTP_GET, getRoot);
   server.on("/helloworld", HTTP_GET, getHelloWorld);
   server.on("/control/value", HTTP_POST, postControlValue);
   server.on("/control/status", HTTP_GET, getControlStatus);
+  server.on("/config", HTTP_GET, getConfiguration);
+  server.on("/config", HTTP_POST, postConfiguration);
   server.on("/reset", HTTP_POST, postReset);
 }
 
@@ -219,13 +220,6 @@ void handleNotFound() {
   response.status = "ERROR";
   response.statusCode = 404;
 
-  sendResponse(response);
-}
-
-void getRoot() {
-  response.message = "Hello";
-  response.status = "OK";
-  response.statusCode = 200;
   sendResponse(response);
 }
 
@@ -296,7 +290,7 @@ void postReset() {
 
 void getConfiguration() {
   DynamicJsonDocument doc(512);
-  serializeConfig(&doc, &configuration);
+  deserializeConfig(&configuration, &doc);
 
   String jsonString;
   serializeJson(doc, jsonString);
@@ -333,8 +327,6 @@ void postConfiguration() {
   sendResponse(response);
   resetFunc();
 }
-
-
 
 
 

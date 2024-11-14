@@ -3711,7 +3711,6 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id details_background_view
-id details_fragment
 id details_fragment_root
 id details_frame
 id details_overview
@@ -4014,6 +4013,8 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recyclerView
+id reloadBut
 id report_drawn
 id reverseSawtooth
 id right
@@ -4307,7 +4308,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_details
 layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -4325,6 +4325,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout device_view
 layout lb_action_1_line
 layout lb_action_2_lines
 layout lb_background_window

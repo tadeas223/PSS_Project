@@ -30,11 +30,7 @@ public class DeviceAPI {
         StringRequest request = new StringRequest(Request.Method.GET, url + "/control/status", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    callback.onSuccess(new JSONObject(response));
-                } catch (JSONException e) {
-                    callback.onError(e);
-                }
+                callback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -45,19 +41,19 @@ public class DeviceAPI {
         ConnectionHandler.getInstance(context).addToRequestQueue(request);
     }
 
-    public void setPinState(boolean value,RequestCallback callback) throws JSONException {
+    public void setPinState(boolean value,NoResponseRequestCallback callback) {
         JSONObject json = new JSONObject();
-        json.put("value", value);
+        try {
+            json.put("value", value);
+        } catch (JSONException e) {
+            callback.onError(e);
+        }
+
         String requestBody = json.toString();
         System.out.println(requestBody);
         StringRequest request = new StringRequest(Request.Method.POST, url + "/control/value", new Response.Listener<String>() {
-            @Override
             public void onResponse(String response) {
-                try {
-                    callback.onSuccess(new JSONObject(response));
-                } catch (JSONException e) {
-                    callback.onError(e);
-                }
+                // Nothing to do here
             }
         }, new Response.ErrorListener() {
             @Override
@@ -79,12 +75,43 @@ public class DeviceAPI {
         ConnectionHandler.getInstance(context).addToRequestQueue(request);
     }
 
+    public void ping(RequestCallback callback) {
+        StringRequest request = new StringRequest(Request.Method.GET, url + "/helloworld", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(error);
+            }
+        });
+        ConnectionHandler.getInstance(context).addToRequestQueue(request);
+    }
+
     public String getUrl() {
         return url;
     }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void getConfig(RequestCallback callback) {
+        StringRequest request = new StringRequest(Request.Method.GET, url + "/config", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(error);
+            }
+        });
+
+        ConnectionHandler.getInstance(context).addToRequestQueue(request);
     }
 }
 

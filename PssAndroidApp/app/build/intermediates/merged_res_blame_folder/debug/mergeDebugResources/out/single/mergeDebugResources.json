@@ -1,27 +1,19 @@
 [
     {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-hdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\xml_network_security_config.xml.flat",
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\xml\\network_security_config.xml"
     },
     {
-        "merged": "com.example.pssandroidapp-debug-34:/xml_network_security_config.xml.flat",
-        "source": "com.example.pssandroidapp-main-36:/xml/network_security_config.xml"
-    },
-    {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-anydpi_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-anydpi\\ic_launcher_round.xml"
+        "merged": "com.example.pssandroidapp-debug-34:/layout_device_view.xml.flat",
+        "source": "com.example.pssandroidapp-main-36:/layout/device_view.xml"
     },
     {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.pssandroidapp-debug-34:/layout_activity_main.xml.flat",
+        "source": "com.example.pssandroidapp-main-36:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -36,12 +28,36 @@
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-anydpi\\ic_launcher.xml"
-    },
-    {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\drawable_default_background.xml.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\drawable\\default_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-anydpi\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-anydpi\\ic_launcher.xml"
     },
     {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
@@ -56,24 +72,12 @@
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\drawable_default_background.xml.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\drawable\\default_background.xml"
-    },
-    {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-main-36:\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Tad\\.gradle\\daemon\\8.9\\com.example.pssandroidapp-debug-34:\\xml_backup_rules.xml.flat",
