@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -48,6 +49,8 @@ public class ConfigureActivity extends Activity {
                     name.setText(json.getString("name"));
                     apSsid.setText(json.getString("ap_ssid"));
                     apPasswd.setText(json.getString("ap_passwd"));
+
+                    ((TextView)findViewById(R.id.deviceName2)).setText(json.getString("name"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

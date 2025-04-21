@@ -20,20 +20,24 @@
         "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/xml/data_extraction_rules.xml"
     },
     {
+        "merged": "com.example.pssandroidapp-debug-61:/layout_activity_configure.xml.flat",
+        "source": "com.example.pssandroidapp-main-63:/layout/activity_configure.xml"
+    },
+    {
         "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/drawable/ic_launcher_foreground.xml"
+        "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/layout_device_item_view.xml.flat",
+        "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/layout/device_item_view.xml"
     },
     {
         "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/layout_device_item_view.xml.flat",
-        "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/layout/device_item_view.xml"
+        "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/drawable/ic_launcher_foreground.xml"
     },
     {
         "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/layout_activity_main.xml.flat",
@@ -62,10 +66,6 @@
     {
         "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-main-63:/mipmap-xxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.pssandroidapp-debug-61:/layout_activity_device.xml.flat",
-        "source": "com.example.pssandroidapp-main-63:/layout/activity_device.xml"
     },
     {
         "merged": "/home/tad/.gradle/daemon/8.9/com.example.pssandroidapp-debug-61:/mipmap-xhdpi_ic_launcher.webp.flat",
