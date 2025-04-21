@@ -30,6 +30,11 @@
             android:label="@string/title_activity_device"
             android:theme="@style/Theme.PssAndroidApp" />
         <activity
+            android:name=".ConfigureActivity"
+            android:exported="false"
+            android:label="ConfigureActivity"
+            android:theme="@style/Theme.PssAndroidApp" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

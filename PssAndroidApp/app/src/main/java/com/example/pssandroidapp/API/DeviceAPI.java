@@ -29,7 +29,7 @@ public class DeviceAPI {
     }
 
     public void getPinState(RequestCallback callback) {
-        StringRequest request = new StringRequest(Request.Method.GET, url + "/control/status", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, url + "/pin", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 callback.onSuccess(response);
@@ -53,7 +53,7 @@ public class DeviceAPI {
 
         String requestBody = json.toString();
         System.out.println(requestBody);
-        StringRequest request = new StringRequest(Request.Method.POST, url + "/control/value", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, url + "/pin", new Response.Listener<String>() {
             public void onResponse(String response) {
                 // Nothing to do here
             }
@@ -112,6 +112,45 @@ public class DeviceAPI {
                 callback.onError(error);
             }
         });
+
+        ConnectionHandler.getInstance(context).addToRequestQueue(request);
+    }
+
+    public void setConfig(Configuration config, NoResponseRequestCallback callback) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("mode", config.getMode());
+            json.put("name", config.getName());
+            json.put("ap_passwd", config.getAp_passwd());
+            json.put("ap_ssid", config.getAp_ssid());
+            json.put("wifi_ssid", config.getWifi_ssid());
+            json.put("wifi_passwd", config.getWifi_passwd());
+        } catch (JSONException e) {
+            callback.onError(e);
+        }
+
+        String requestBody = json.toString();
+        System.out.println(requestBody);
+        StringRequest request = new StringRequest(Request.Method.POST, url + "/config", new Response.Listener<String>() {
+            public void onResponse(String response) {
+                // Nothing to do here
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(error);
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes(StandardCharsets.UTF_8);
+            }
+        };
 
         ConnectionHandler.getInstance(context).addToRequestQueue(request);
     }

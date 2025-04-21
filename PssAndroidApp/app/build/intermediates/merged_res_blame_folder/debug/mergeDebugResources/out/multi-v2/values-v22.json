@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/ec6d8c2c9f4658bb028c6100a60422e7/transformed/appcompat-1.6.1/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\fd03bf894ac2ff074b416df7cbbe005c\\transformed\\leanback-1.0.0\\res\\values-v22\\values-v22.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/fd03bf894ac2ff074b416df7cbbe005c/transformed/leanback-1.0.0/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

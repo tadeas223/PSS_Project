@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         Button reloadBut = findViewById(R.id.reloadBut);
         reloadBut.setOnClickListener((x) -> {
             loadDeviceFromAP();
-            loadDevicesOnNetwork();
+            //loadDevicesOnNetwork();
         });
 
         loadDeviceFromAP();
-        loadDevicesOnNetwork();
+        //loadDevicesOnNetwork();
     }
 
     public void loadDeviceFromAP() {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> activeIPs = scanNetwork(ip.substring(0,7));
 
         for(String netIP : activeIPs) {
-            netIP = "http://" + netIP + DeviceAPI.DEVICE_PORT;
+            netIP = "http://" + netIP + ":" + DeviceAPI.DEVICE_PORT;
             DeviceAPI api = new DeviceAPI(netIP, getApplicationContext());
             Device device = new Device(netIP);
             api.getConfig(new RequestCallback() {
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadDevice(String url) {
+        url = "http://" + url + ":" + DeviceAPI.DEVICE_PORT;
         Device device = new Device(url);
         DeviceAPI api = new DeviceAPI(url, getApplicationContext());
         device.updateConfig(api, new RequestCallback() {

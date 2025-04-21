@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/ec6d8c2c9f4658bb028c6100a60422e7/transformed/appcompat-1.6.1/res/values-port/values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

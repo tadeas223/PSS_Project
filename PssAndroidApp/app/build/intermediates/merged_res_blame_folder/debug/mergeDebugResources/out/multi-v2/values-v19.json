@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-v19/values-v19.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\fd03bf894ac2ff074b416df7cbbe005c\\transformed\\leanback-1.0.0\\res\\values-v19\\values-v19.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/fd03bf894ac2ff074b416df7cbbe005c/transformed/leanback-1.0.0/res/values-v19/values-v19.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

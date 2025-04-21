@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\6d3ca490ef46b6cc8ac95241e2794ece\\transformed\\material-1.10.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/6d3ca490ef46b6cc8ac95241e2794ece/transformed/material-1.10.0/res/values-h320dp-port-v13/values-h320dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

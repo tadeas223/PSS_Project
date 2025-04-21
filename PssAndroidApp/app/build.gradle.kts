@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.example.pssandroidapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.pssandroidapp"
-        minSdk = 33
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"

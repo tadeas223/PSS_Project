@@ -3632,6 +3632,8 @@ id always
 id androidx_compose_ui_view_composition_context
 id animateToEnd
 id animateToStart
+id ap_passwdText
+id ap_ssidText
 id arc
 id asConfigured
 id async
@@ -3640,6 +3642,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id backBut
+id backBut2
 id background
 id background_container
 id background_imagein
@@ -3688,6 +3691,8 @@ id collapseActionView
 id column
 id compose_view_saveable_id_tag
 id compress
+id configBut
+id configureBut
 id confirm_button
 id consume_window_insets_tag
 id container
@@ -3737,6 +3742,7 @@ id details_overview_right_panel
 id details_root
 id details_rows_dock
 id deviceName
+id deviceName2
 id dialog_button
 id dimensions
 id direct
@@ -3971,6 +3977,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id nameText
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -4131,6 +4138,9 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView1
+id textView3
+id textView4
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -4332,6 +4342,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_configure
 layout activity_device
 layout activity_main
 layout custom_dialog

@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\ec6d8c2c9f4658bb028c6100a60422e7\\transformed\\appcompat-1.6.1\\res\\values-land\\values-land.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/ec6d8c2c9f4658bb028c6100a60422e7/transformed/appcompat-1.6.1/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\6d3ca490ef46b6cc8ac95241e2794ece\\transformed\\material-1.10.0\\res\\values-land\\values-land.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/6d3ca490ef46b6cc8ac95241e2794ece/transformed/material-1.10.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,35,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

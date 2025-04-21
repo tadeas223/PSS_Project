@@ -4,7 +4,7 @@
             "outputFile": "com.example.pssandroidapp-mergeDebugResources-59:/values-h360dp-land-v13/values-h360dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Tad\\.gradle\\caches\\8.9\\transforms\\6d3ca490ef46b6cc8ac95241e2794ece\\transformed\\material-1.10.0\\res\\values-h360dp-land-v13\\values-h360dp-land-v13.xml",
+                    "source": "/home/tad/.gradle/caches/8.9/transforms/6d3ca490ef46b6cc8ac95241e2794ece/transformed/material-1.10.0/res/values-h360dp-land-v13/values-h360dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

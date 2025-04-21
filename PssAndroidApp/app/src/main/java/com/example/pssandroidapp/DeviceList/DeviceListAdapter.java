@@ -48,9 +48,9 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceItemView> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,DeviceActivity.class);
+                Intent intent = new Intent(context, DeviceActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("device", devices.get(position));
+                intent.putExtra("device", devices.get(position).getUrl());
                 context.startActivity(intent);
             }
         });

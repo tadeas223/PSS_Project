@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="33"
+        android:minSdkVersion="26"
         android:targetSdkVersion="33" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -43,6 +43,11 @@
             android:name="com.example.pssandroidapp.DeviceActivity"
             android:exported="false"
             android:label="@string/title_activity_device"
+            android:theme="@style/Theme.PssAndroidApp" />
+        <activity
+            android:name="com.example.pssandroidapp.ConfigureActivity"
+            android:exported="false"
+            android:label="ConfigureActivity"
             android:theme="@style/Theme.PssAndroidApp" />
         <activity
             android:name="com.example.pssandroidapp.MainActivity"
