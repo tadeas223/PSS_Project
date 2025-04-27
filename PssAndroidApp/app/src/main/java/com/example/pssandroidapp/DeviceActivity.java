@@ -53,7 +53,7 @@ public class DeviceActivity extends Activity {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                api.setPinState(b, new NoResponseRequestCallback() {
+                api.setPinState(!b, new NoResponseRequestCallback() {
                     @Override
                     public void onError(Exception e) {
                         e.printStackTrace();
