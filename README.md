@@ -17,4 +17,4 @@ ESP-8266 dev board working as a remote controlled usb that can be either turned 
 - copy the PssAndroidApp folder and install it with gradle into your Android 8 or higher phone
 
 ### Documentation
-a full documentation is [here](Documentace.pdf)
+a full documentation is [here](Dokumentace.pdf)
