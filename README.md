@@ -18,3 +18,6 @@ ESP-8266 dev board working as a remote controlled usb that can be either turned 
 
 ### Documentation
 a full documentation is [here](Dokumentace.pdf)
+
+### Poster
+the poster is [here](PSS.jpg)
